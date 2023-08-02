@@ -6,6 +6,7 @@ from keras.models import load_model
 import numpy as np
 from PIL import Image
 from streamlit_drawable_canvas import st_canvas
+from tensorflow.python import pywrap_tensorflow as _pywrap_tensorflow
 
 # Load Model
 model = load_model('mnist_cnn_model.h5',compile = False)
@@ -30,8 +31,8 @@ canvas_result = st_canvas(
     stroke_width=20,  # Stroke width
     stroke_color="rgba(255, 165, 0, 1)",
     background_color="rgba(0, 0, 0, 1)",  # Canvas background
-    width=150,
-    height=150,
+    width=200,
+    height=200,
     drawing_mode="freedraw",
     key="canvas",
 )
@@ -40,7 +41,7 @@ if st.button('Predict'):
     if canvas_result.image_data is not None:
         # Convert the image data to PIL Image
         img = Image.fromarray(canvas_result.image_data.astype('uint8'), 'RGBA')
-        st.image(img, use_column_width=True, caption='Input Image')
+        st.image(img, use_column_width=False, caption='Input Image')
         img = transform_image(img)
         prediction = np.argmax(model.predict(img), axis=-1)
         st.write("Predicted digit: ", prediction[0])
