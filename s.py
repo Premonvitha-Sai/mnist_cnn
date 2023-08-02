@@ -22,7 +22,7 @@ def transform_image(img):
     return img
 
 # Streamlit App
-st.title("MNIST Digit Classification")
+st.title("MNIST Digit Classification using CNN")
 st.write("Draw a digit below and click 'Predict'")
 
 # Create a canvas component
