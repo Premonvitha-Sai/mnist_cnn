@@ -44,6 +44,7 @@ if st.button('Predict'):
         st.image(img, use_column_width=False, caption='Input Image')
         img = transform_image(img)
         prediction = np.argmax(model.predict(img), axis=-1)
-        st.write("Predicted digit: ", prediction[0])
+       # st.write("Predicted digit: ", prediction[0])
+        st.markdown(f"<h2 style='color: white'>Predicted digit: {prediction[0]}</h2>", unsafe_allow_html=True)
     else:
         st.write("Draw a digit in the canvas first.")
